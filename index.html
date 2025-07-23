@@ -9,24 +9,41 @@
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="bg-info">
 
     <div class="container" id="mainDiv">
-        <form class=" my-4">
-            <div class="my-3">
-                <label for="km" class="form-label">Chilometri percorsi</label>
-                <input type="text" class="form-control" id="km">
-                <div id="kmHelp" class="form-text d-none" >Nel campo chilometri inserire solo numeri</div>
-            </div>
-            <div class="my-3">
-                <label for="userAge" class="form-label">Età passeggero</label>
-                <input type="text" class="form-control" id="userAge">
-                <div id="ageHelp" class="form-text d-none" >Nel campo età inserire solo numeri e deve essere minore di 100</div>
-            </div>
-            <button type="submit" class="btn btn-primary" id="calcButton">Calcola</button>
-        </form>
 
-        
+        <div class="card my-3 shadow bg-body-tertiary">
+            <div class="card-header">
+                Calcolo prezzo del biglietto
+            </div>
+            <div class="card-body">
+                <form class=" mb-2">
+                    <div class="my-3">
+                        <label for="username" class="form-label">Nominativo</label>
+                        <input type="text" class="form-control" id="username">
+                    </div>
+                    <div class="my-3">
+                        <label for="km" class="form-label">Chilometri percorsi</label>
+                        <input type="text" class="form-control" id="km">
+                        <div id="kmHelp" class="form-text d-none text-danger">Nel campo chilometri inserire solo numeri</div>
+                    </div>
+                    <div class="my-3">
+                        <label for="userAge" class="form-label">Età passeggero</label>
+                        <input type="text" class="form-control" id="userAge">
+                        <div id="ageHelp" class="form-text d-none text-danger">Nel campo età inserire solo numeri e deve essere
+                            minore di 100</div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary px-4 rounded-pill" id="calcButton">Calcola</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+
     </div>
 
     <script src="./assets/main.js"></script>

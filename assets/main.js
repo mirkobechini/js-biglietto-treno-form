@@ -3,11 +3,12 @@ const mainDivEl = document.getElementById("mainDiv")
 const kmHelpEl = document.getElementById("kmHelp")
 const ageHelpEl = document.getElementById("ageHelp")
 
-//inputs
+//form fields
 const kmEl = document.getElementById("km")
 const ageEl = document.getElementById("userAge")
+const usernameEl = document.getElementById("username")
 const formEl = document.querySelector("form")
-const username = "Pippo"
+
 
 
 
@@ -35,11 +36,13 @@ function checkInput(km, age) {
     //check only digits
     if (isNaN(km)) {
         kmHelpEl.classList.replace("d-none", "d-block")
+        kmEl.classList.add("border", "border-danger")
         console.log(`Errore: km = ${km}\nNel campo chilometri inserire solo numeri`);
         return false
     }
     if (isNaN(age) || age > 100) {
         ageHelpEl.classList.replace("d-none", "d-block")
+        ageEl.classList.add("border", "border-danger")
         console.log(`Errore: age = ${age}\nNel campo età inserire solo numeri e deve essere minore di 100`);
         return false
     }
@@ -86,12 +89,12 @@ formEl.addEventListener('submit', (e) => {
 
         //add card
         mainDivEl.innerHTML += `
-        <div class="card my-7">
+        <div class="card my-5 shadow bg-body-tertiary">
             <div class="card-header">
                 Resoconto biglietto
             </div>
             <div class="card-body">
-                <h5 class="card-title" id="UserName">${username}</h5>
+                <h5 class="card-title" id="UserName">${usernameEl.value}</h5>
                 <table class="table">
                     <thead>
                         <tr>
