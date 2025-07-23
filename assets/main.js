@@ -1,6 +1,8 @@
 //DOM elements
-
 const mainDivEl = document.getElementById("mainDiv")
+const kmHelpEl = document.getElementById("kmHelp")
+const ageHelpEl = document.getElementById("ageHelp")
+
 //inputs
 const kmEl = document.getElementById("km")
 const ageEl = document.getElementById("userAge")
@@ -32,10 +34,12 @@ function randomNumberFromDigits(digits) {
 function checkInput(km, age) {
     //check only digits
     if (isNaN(km)) {
+        kmHelpEl.classList.replace("d-none", "d-block")
         console.log(`Errore: km = ${km}\nNel campo chilometri inserire solo numeri`);
         return false
     }
     if (isNaN(age) || age > 100) {
+        ageHelpEl.classList.replace("d-none", "d-block")
         console.log(`Errore: age = ${age}\nNel campo età inserire solo numeri e deve essere minore di 100`);
         return false
     }
@@ -108,8 +112,6 @@ formEl.addEventListener('submit', (e) => {
                 </table>
             </div>
         </div>`
-        //setting output
-
 
         //price log
         console.log(`Il prezzo del biglietto è ${ticketPrice}`);
