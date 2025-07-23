@@ -45,7 +45,7 @@ function calcPrice(km, age) {
 
 //eventlistener
 
-buttonConfirmEl.addEventListener('click', () => {
+buttonConfirmEl.addEventListener('submit', () => {
 
     //elements value
     const kmElValue = kmEl.value
