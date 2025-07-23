@@ -11,47 +11,21 @@
 
 <body>
 
-    <div class="container">
+    <div class="container" id="mainDiv">
         <form class=" my-4">
             <div class="my-3">
                 <label for="km" class="form-label">Chilometri percorsi</label>
-                <input type="text" class="form-control" id="km" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="km">
                 <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
             </div>
             <div class="my-3">
                 <label for="userAge" class="form-label">Età passeggero</label>
                 <input type="text" class="form-control" id="userAge">
             </div>
-            <button type="submit" class="btn btn-primary">Calcola</button>
+            <button type="submit" class="btn btn-primary" id="calcButton">Calcola</button>
         </form>
 
-        <!-- Results-->
-        <div class="card my-7">
-            <div class="card-header">
-                Resoconto biglietto
-            </div>
-            <div class="card-body">
-                <h5 class="card-title" id="UserName">Nome Passeggero</h5>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Offerta</th>
-                            <th scope="col">Vagone</th>
-                            <th scope="col">Codice CP</th>
-                            <th scope="col">Costo biglietto</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" id="offert"></th>
-                            <td id="wagon"></td>
-                            <td id="codeCP"></td>
-                            <td id="price"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        
     </div>
 
     <script src="./assets/main.js"></script>

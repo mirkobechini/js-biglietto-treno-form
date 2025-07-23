@@ -1,8 +1,13 @@
 //DOM elements
 
+const mainDivEl = document.getElementById("mainDiv")
+//inputs
 const kmEl = document.getElementById("km")
 const ageEl = document.getElementById("userAge")
-const buttonConfirmEl = document.querySelector("button")
+const formEl = document.querySelector("form")
+const username = "Pippo"
+
+
 
 
 //constants price and discount
@@ -14,7 +19,15 @@ const youngAge = 18
 
 
 
+
 //FUNCTIONS
+
+//Utility function
+function randomNumberFromDigits(digits) {
+    return Math.floor(Math.random() * (digits * 10) - 1);
+}
+
+
 //check input
 function checkInput(km, age) {
     //check only digits
@@ -29,33 +42,81 @@ function checkInput(km, age) {
     return true
 }
 
+function calcOffert(age){
+    if (age < youngAge) {
+        return "Sconto giovani"
+    } else if (age > oldAge) {
+        return `Sconto over ${oldAge}`
+    }
+    return `Standard`
+
+}
+
 
 //price calculation
 
-function calcPrice(km, age) {
+function calcPrice(km, offert) {
     let finalPrice = km * priceKm
-    if (age < youngAge) {
+    if (offert === "Sconto giovani") {
         finalPrice -= finalPrice * youngDiscount
-    } else if (age > oldAge) {
+    } else if (offert === "Sconto over ${oldAge}") {
         finalPrice -= finalPrice * oldDiscount
     }
     return (Math.round(finalPrice * 100) / 100).toFixed(2)
 }
 
-
 //eventlistener
 
-buttonConfirmEl.addEventListener('submit', () => {
-
-    //elements value
+formEl.addEventListener('submit', (e) => {
+    e.preventDefault();
+    //getting input
     const kmElValue = kmEl.value
     const ageElValue = ageEl.value
 
     if (checkInput(kmElValue, ageElValue)) {
-        const price = calcPrice(kmElValue, ageElValue)
+        //outputs
+        const offert = calcOffert(ageElValue);
+        const wagon = `${randomNumberFromDigits(1)}`
+        const codeCP = `${randomNumberFromDigits(5)}`
+        const ticketPrice = `${calcPrice(kmElValue, offert)} €`
+
+        //add card
+        mainDivEl.innerHTML += `
+        <div class="card my-7">
+            <div class="card-header">
+                Resoconto biglietto
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" id="UserName">${username}</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Offerta</th>
+                            <th scope="col">Vagone</th>
+                            <th scope="col">Codice CP</th>
+                            <th scope="col">Costo biglietto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">${offert}</td>
+                            <td id="wagon">${wagon}</td>
+                            <td id="codeCP">${codeCP}</td>
+                            <td id="ticketPrice">${ticketPrice}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>`
+        //setting output
+
+
         //price log
-        console.log(`Il prezzo del biglietto è ${price}`);
+        console.log(`Il prezzo del biglietto è ${ticketPrice}`);
     }
+
+
+
 })
 
 
