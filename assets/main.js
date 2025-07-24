@@ -1,5 +1,5 @@
 //DOM elements
-const mainDivEl = document.getElementById("mainDiv")
+const TicketResultDivEl = document.getElementById("ticketResult")
 const kmHelpEl = document.getElementById("kmHelp")
 const ageHelpEl = document.getElementById("ageHelp")
 
@@ -27,12 +27,15 @@ const youngAge = 18
 
 //Utility function
 function randomNumberFromDigits(digits) {
-    return Math.floor(Math.random() * (digits * 10) - 1);
+    const min = Math.pow(10, digits - 1);
+    const max = Math.pow(10, digits) - 1;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 
 //check input
 function checkInput(km, age) {
+    resetHelpMessage()
     //check only digits
     if (isNaN(km)) {
         kmHelpEl.classList.replace("d-none", "d-block")
@@ -49,7 +52,14 @@ function checkInput(km, age) {
     return true
 }
 
-function calcOffert(age){
+function resetHelpMessage() {
+    kmHelpEl.classList.replace("d-block", "d-none")
+    ageHelpEl.classList.replace("d-block", "d-none")
+    kmEl.classList.remove("border", "border-danger")
+    ageEl.classList.remove("border", "border-danger")
+}
+
+function calcOffert(age) {
     if (age < youngAge) {
         return "Sconto giovani"
     } else if (age > oldAge) {
@@ -66,7 +76,7 @@ function calcPrice(km, offert) {
     let finalPrice = km * priceKm
     if (offert === "Sconto giovani") {
         finalPrice -= finalPrice * youngDiscount
-    } else if (offert === "Sconto over ${oldAge}") {
+    } else if (offert === `Sconto over ${oldAge}`) {
         finalPrice -= finalPrice * oldDiscount
     }
     return (Math.round(finalPrice * 100) / 100).toFixed(2)
@@ -77,8 +87,8 @@ function calcPrice(km, offert) {
 formEl.addEventListener('submit', (e) => {
     e.preventDefault();
     //getting input
-    const kmElValue = kmEl.value
-    const ageElValue = ageEl.value
+    const kmElValue = Number(kmEl.value)
+    const ageElValue = Number(ageEl.value)
 
     if (checkInput(kmElValue, ageElValue)) {
         //outputs
@@ -88,7 +98,7 @@ formEl.addEventListener('submit', (e) => {
         const ticketPrice = `${calcPrice(kmElValue, offert)} €`
 
         //add card
-        mainDivEl.innerHTML += `
+        TicketResultDivEl.innerHTML = `
         <div class="card my-5 shadow bg-body-tertiary">
             <div class="card-header">
                 Resoconto biglietto
