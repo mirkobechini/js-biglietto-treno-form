@@ -25,14 +25,14 @@
                     </div>
                     <div class="my-3">
                         <label for="km" class="form-label">Chilometri percorsi</label>
-                        <input type="text" class="form-control" id="km">
+                        <input type="text" class="form-control" id="km" required>
                         <div id="kmHelp" class="form-text d-none text-danger">Nel campo chilometri inserire solo numeri</div>
                     </div>
                     <div class="my-3">
                         <label for="userAge" class="form-label">Età passeggero</label>
-                        <input type="text" class="form-control" id="userAge">
+                        <input type="text" class="form-control" id="userAge" required>
                         <div id="ageHelp" class="form-text d-none text-danger">Nel campo età inserire solo numeri e deve essere
-                            minore di 100</div>
+                            minore o uguale a 100</div>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary px-4 rounded-pill" id="calcButton">Calcola</button>
